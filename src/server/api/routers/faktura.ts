@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import fetchFakturaQueries from "../../fetch_faktura_queries";
 
 const fakturaoversiktSchema = z.object({
   faktura_nr: z.number().nullable().optional(),
@@ -71,4 +72,8 @@ export const fakturaRouter = createTRPCRouter({
         data: { ...input, selskap: 1 },
       });
     }),
+
+  fetchfak: publicProcedure.query(async () => {
+    return await fetchFakturaQueries();
+  }),
 });
