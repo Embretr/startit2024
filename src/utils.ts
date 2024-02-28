@@ -8,18 +8,18 @@ export const paginationInput = z.object({
 export const actionIdToButtonText = (actionId: number) => {
   switch (actionId) {
     case 1001:
-      return "Send en påminnelse på e-post for fakturaen.";
+      return "Send påminnelse";
     case 1002:
-      return "Send en markedsførings-e-post.";
+      return "Send markedsførings-epost";
     case 1003:
-      return "Send en takk-e-post.";
+      return "Send takk-e-post";
     case 1004:
-      return "Generer en faktura.";
+      return "Generer faktura";
     case 1005:
-      return "Generer en rapport basert på de mest lovende kundene.";
+      return "Generer rapport";
     case 1006:
-      return "Generer en rapport basert på de minst lovende kundene.";
+      return "Generer rapport";
     case 1007:
-      return "Generer en analyse basert på selskapets fortjeneste.";
+      return "Generer rapport";
   }
 };
