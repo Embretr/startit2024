@@ -1,6 +1,7 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { Button } from "../_components/button";
 import Header from "../_components/header";
+import Invoices from "../_components/invoices";
 
 export default async function Home() {
   return (
@@ -14,6 +15,7 @@ export default async function Home() {
           </Button>
         }
       />
+      <Invoices />
     </div>
   );
 }
