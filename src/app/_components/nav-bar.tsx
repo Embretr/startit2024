@@ -1,27 +1,32 @@
+"use client";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useState } from "react";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Hjelp", href: "#" },
+  { name: "Kundesenter", href: "#" },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white">
+    <header className="bg-primary-light fixed left-0 right-0 top-0 z-50">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <a href="#" className="-m-1.5 p-1.5">
           <span className="sr-only">Your Company</span>
-          <Image className="h-8 w-auto" src="/logo.png" alt="" />
+          <Image
+            className="h-8 w-auto"
+            width="100"
+            height="50"
+            src="/logo.png"
+            alt=""
+          />
         </a>
         <div className="flex lg:hidden">
           <button
@@ -44,7 +49,7 @@ export default function Navbar() {
             </a>
           ))}
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
+            Logg ut <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -92,7 +97,7 @@ export default function Navbar() {
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
+                  Logg ut
                 </a>
               </div>
             </div>
