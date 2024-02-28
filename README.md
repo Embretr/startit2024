@@ -3,7 +3,7 @@
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
 # This is a project for startIT 2024
-The team members are Mads, Mori, Embret, Marius and last but not least Anton
+The team members are Mads, Mori, Embret, Marius and Anton
 
 ## What's next? How do I make an app with this?
 
