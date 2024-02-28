@@ -81,5 +81,7 @@ export default async function fetchFakturaQueries() {
     },
   ];
 
-  return queries;
+  return JSON.stringify(queries, (key, value) =>
+    typeof value === "bigint" ? value.toString() : value,
+  );
 }
