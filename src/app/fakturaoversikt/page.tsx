@@ -5,16 +5,26 @@ import {
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "../../lib/utils";
-import { api } from "../../trpc/server";
 import { Button } from "../_components/button";
 import Header from "../_components/header";
 import Invoices from "../_components/invoices";
+import CreateEmailDialog, {
+  AIFakturaResponse,
+} from "../_components/create-email-dialog/create-email-dialog";
+import { Action } from "../testing/page";
+import { api } from "../../trpc/server";
 
 export default async function Home({ searchParams: { page = "1" } }) {
   const invoices = await api.faktura.getAll.query({
     skip: (parseInt(page) - 1) * 20,
     take: 20,
   });
+
+  const action: Action = {
+    title: "Hei dette er tittel",
+    description: "jkfldøjasfkløadj fklødasjkfl dsajklø",
+    actionId: 1001,
+  };
 
   return (
     <div className="h-[200vh] p-6">

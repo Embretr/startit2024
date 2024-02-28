@@ -7,7 +7,6 @@ const openAi = new OpenAi({
 });
 export default openAi;
 
-
 export const promptInvoice = async () => {
   const SYSTEM_CONTENT = `
     You are an asssitant that helps with invoices. You will recieve content from a user listing
@@ -63,16 +62,16 @@ export const promptInvoice = async () => {
     messages: [
       {
         role: "system",
-        content: SYSTEM_CONTENT
+        content: SYSTEM_CONTENT,
       },
       {
         role: "user",
-        content: USER_CONTENT
+        content: USER_CONTENT,
       },
     ],
     model: "gpt-3.5-turbo",
     response_format: { type: "json_object" },
-    top_p: 1
+    top_p: 1,
   });
 
   return completion.choices[0].message.content;

@@ -1,8 +1,25 @@
 import { api } from "../../trpc/server";
 
+export interface AIFakturaResponse {
+  actions: Actions;
+}
+
+export interface Actions {
+  statusCode: number;
+  actions: Action[];
+}
+
+export interface Action {
+  title: string;
+  description: string;
+  actionId: number;
+}
+
 export default async function TestingPage() {
   const result = await api.faktura.fetchfak.query();
   const chat = await api.ai.getInvoiceActions.query();
+
+  console.log(chat);
 
   return (
     <div>
