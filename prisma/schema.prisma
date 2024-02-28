@@ -1,11 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model fakturaoversikt {
+  faktura_nr           Int?
+  faktura_dato         String?
+  forfallsdato         String?
+  kundenummer          Int?
+  avdelingsnummer      String?
+  avdelingsnavn        String?
+  prosjektnummer       String?
+  prosjektledernummer  String?
+  belop_eks_mva        Float?
+  valuta               String?
+  belop_inkl_mva       Float?
+  betalt               Float?
+  utestaende           Float?
+  purring              Float?
+  purring_status       String?
+  purring_sist_sendt   String?
+  purring_forfallsdato String?
+  selskap              Int?
+  id                   String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+}
+
+model saldobalanse {
+  kontonummer      Int?
+  kontonavn        String?
+  inngaaende_saldo Float?
+  endring          Float?
+  utgaaende_saldo  Float?
+  id               String  @id(map: "saldobalanse_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  selskap          Int?
+}
+
+model timestatistikk {
+  avdelingsnummer                 String?
+  avdelingsnavn                   String?
+  ansattnummer                    String?
+  normaltid                       Float?
+  registrert_tid_sum_med_lonn     Float?
+  registrert_tid_fravaer_med_lonn Float?
+  registrert_tid_nettotid         Float?
+  registrert_tid_pluss_tid        Float?
+  fakt_timer_budsjett             Float?
+  fakt_timer_registrert           Float?
+  fakt_grad_budsjett_prosent      Float?
+  fakt_grad_prosent_registrert    Float?
+  budsjett_oppnaa_grad_prosent    Float?
+  fakt_tid_i_prosent_av_nettotid  Float?
+  sum_ufakturert_prosj            Float?
+  selskap                         Int?
+  id                              String  @id(map: "timestatistikk_pk") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sum_div_oppgaver                Float?
+  sum_gen_akt                     Float?
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
 }
