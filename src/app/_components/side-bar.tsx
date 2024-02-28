@@ -24,6 +24,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Fragment, useState } from "react";
 
 const navigation = [
@@ -32,28 +33,23 @@ const navigation = [
     name: "Fakturaoversikt",
     href: "/fakturaoversikt",
     icon: DocumentDuplicateIcon,
-    current: false,
   },
   {
     name: "Resultatrapporter",
     href: "/resultatrapport",
     icon: FolderIcon,
-    current: false,
   },
   {
     name: "Saldo",
     href: "/saldobalanse",
     icon: CurrencyDollarIcon,
-    current: false,
   },
   {
     name: "Timeslister",
-    href: "/timestatistikk",
+    href: "/timesstatistikk",
     icon: UsersIcon,
-    current: false,
   },
 ];
-const teams = [];
 const userNavigation = [
   { name: "Your profile", href: "#" },
   { name: "Sign out", href: "#" },
@@ -65,6 +61,7 @@ function classNames(...classes: string[]) {
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -149,7 +146,7 @@ export default function Sidebar() {
                                 <a
                                   href={item.href}
                                   className={classNames(
-                                    item.current
+                                    pathname === item.href
                                       ? "text-primary bg-gray-50"
                                       : "hover:text-primary text-gray-700 hover:bg-gray-50",
                                     "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
@@ -157,7 +154,7 @@ export default function Sidebar() {
                                 >
                                   <item.icon
                                     className={classNames(
-                                      item.current
+                                      pathname === item.href
                                         ? "text-primary"
                                         : "group-hover:text-primary text-gray-400",
                                       "h-6 w-6 shrink-0",
@@ -172,33 +169,6 @@ export default function Sidebar() {
                         </li>
                         <li>
                           <div className="text-xs font-semibold leading-6 text-gray-400"></div>
-                          <ul role="list" className="-mx-2 mt-2 space-y-1">
-                            {teams.map((team) => (
-                              <li key={team.name}>
-                                <a
-                                  href={team.href}
-                                  className={classNames(
-                                    team.current
-                                      ? "text-primary bg-gray-50"
-                                      : "hover:text-primary text-gray-700 hover:bg-gray-50",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
-                                  )}
-                                >
-                                  <span
-                                    className={classNames(
-                                      team.current
-                                        ? "border-primary text-primary"
-                                        : "group-hover:border-primary group-hover:text-primary border-gray-200 text-gray-400",
-                                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium",
-                                    )}
-                                  >
-                                    {team.initial}
-                                  </span>
-                                  <span className="truncate">{team.name}</span>
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
                         </li>
                         <li className="mt-auto">
                           <a
@@ -243,7 +213,7 @@ export default function Sidebar() {
                         <a
                           href={item.href}
                           className={classNames(
-                            item.current
+                            pathname === item.href
                               ? "text-primary bg-gray-50"
                               : "hover:text-primary text-gray-700 hover:bg-gray-50",
                             "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
@@ -251,7 +221,7 @@ export default function Sidebar() {
                         >
                           <item.icon
                             className={classNames(
-                              item.current
+                              pathname === item.href
                                 ? "text-primary"
                                 : "group-hover:text-primary text-gray-400",
                               "h-6 w-6 shrink-0",
@@ -266,33 +236,6 @@ export default function Sidebar() {
                 </li>
                 <li>
                   <div className="text-xs font-semibold leading-6 text-gray-400"></div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {teams.map((team) => (
-                      <li key={team.name}>
-                        <a
-                          href={team.href}
-                          className={classNames(
-                            team.current
-                              ? "text-primary bg-gray-50"
-                              : "hover:text-primary text-gray-700 hover:bg-gray-50",
-                            "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
-                          )}
-                        >
-                          <span
-                            className={classNames(
-                              team.current
-                                ? "border-primary text-primary"
-                                : "group-hover:border-primary group-hover:text-primary border-gray-200 text-gray-400",
-                              "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium",
-                            )}
-                          >
-                            {team.initial}
-                          </span>
-                          <span className="truncate">{team.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
                 </li>
                 <li className="mt-auto">
                   <a
