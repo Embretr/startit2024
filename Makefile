@@ -1,9 +1,14 @@
 # Clean all, start db and run project
 .PHONY: fresh
 fresh:
+	make db
+	make dev
+
+.PHONY: db
+db:
 	make purge
 	docker compose up -d
-	make dev
+	make loaddata
 
 # Clean everything
 .PHONY: purge
@@ -13,12 +18,12 @@ purge:
 	docker container rm start_db -f
 
 # Migrate prisma and run project
-.PHONY: dev
+.PHONY: start
 dev:
-	npx prisma migrate dev
-	pnpm install
 	pnpm run dev
 
 # Migrate in data
 .PHONY: loaddata
 loaddata:
+	npx prisma migrate reset
+	pnpm install
