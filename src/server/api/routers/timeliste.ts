@@ -25,7 +25,7 @@ const timelisteSchema = z.object({
   sum_gen_akt: z.number().optional().nullable(),
 });
 
-type Timesheet = z.infer<typeof timelisteSchema>;
+export type Timesheet = z.infer<typeof timelisteSchema>;
 
 export { timelisteSchema as timeliste };
 

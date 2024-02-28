@@ -24,7 +24,7 @@ const fakturaoversiktSchema = z.object({
   id: z.string(), // Assuming ID is always present and is a string.
 });
 
-type Invoice = z.infer<typeof fakturaoversiktSchema>;
+export type Invoice = z.infer<typeof fakturaoversiktSchema>;
 
 export const fakturaRouter = createTRPCRouter({
   getAll: publicProcedure
