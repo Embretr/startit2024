@@ -23,7 +23,7 @@ export default async function Home() {
         }
       />
       <MagicCard />
-      <div className="pt-16">
+      <div className="">
         <h3 className="text-base font-semibold leading-6 text-gray-900">
           Siste 3 måneder
         </h3>
