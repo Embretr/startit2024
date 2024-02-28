@@ -1,7 +1,6 @@
 import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
 import { Button } from "../_components/button";
 import Header from "../_components/header";
-import MagicCard from "../_components/magic-card";
 import SaldoTable from "../_components/saldo-table";
 
 const stats = [
@@ -22,7 +21,6 @@ export default async function Home() {
           </Button>
         }
       />
-      <MagicCard />
       <div className="">
         <h3 className="text-base font-semibold leading-6 text-gray-900">
           Siste 3 måneder
