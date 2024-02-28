@@ -46,6 +46,11 @@ export const promptInvoice = async () => {
           description: "Generer en rapport basert på denne kunden.",
           actionId: 1005
         },
+        { 
+          title: "Kunden med kundenummer 29383 har ikke mottat faktura for denne måned.",
+          description: "Det anbefales å sende en faktura til denne kunden.",
+          actionId: 1005
+        },
       ]
     }
 
@@ -71,7 +76,7 @@ export const promptInvoice = async () => {
     ],
     model: "gpt-3.5-turbo",
     response_format: { type: "json_object" },
-    top_p: 1,
+    top_p: 0.5,
   });
 
   return completion.choices[0].message.content;

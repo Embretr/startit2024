@@ -10,7 +10,6 @@ import { Button } from "../_components/button";
 import Header from "../_components/header";
 import Invoices from "../_components/invoices";
 import MagicCard from "../_components/magic-card";
-import { Action } from "../testing/page";
 
 export default async function Home({ searchParams: { page = "1" } }) {
   const invoices = await api.faktura.getAll.query({
@@ -18,14 +17,8 @@ export default async function Home({ searchParams: { page = "1" } }) {
     take: 20,
   });
 
-  const action: Action = {
-    title: "Hei dette er tittel",
-    description: "jkfldøjasfkløadj fklødasjkfl dsajklø",
-    actionId: 1001,
-  };
-
   return (
-    <div className="h-[200vh] p-6">
+    <div className="p-6">
       <Header
         title="Fakturaoversikt"
         breadcrumb={["Hjem", "Fakturaoversikt"]}

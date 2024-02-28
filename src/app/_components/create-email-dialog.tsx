@@ -1,6 +1,7 @@
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -10,7 +11,7 @@ import {
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Textarea } from "../../../components/ui/textarea";
+import { Textarea } from "../../components/ui/textarea";
 
 export interface AIFakturaResponse {
   actions: Actions;
@@ -30,20 +31,22 @@ export interface Action {
 interface CreateEmailDialogProps {
   action: Action;
   isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
 }
 
 export default function CreateEmailDialog({
   action,
   isOpen,
+  onOpenChange,
 }: CreateEmailDialogProps) {
   return (
-    <Dialog open={isOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent className="bg-white sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{action.title}</DialogTitle>
           <DialogDescription>{action.description}</DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <div className="grid gap-4 py-4" bg-white>
           <div className="grid w-full items-center gap-4">
             <Label htmlFor="username">Epost adresse</Label>
             <Input id="username" value="info@kunde1.no" />
@@ -56,12 +59,14 @@ export default function CreateEmailDialog({
             <Label htmlFor="message">Innhold</Label>
             <Textarea
               id="message"
-              placeholder="Skriv inn innholder til eposten her... "
+              placeholder="Skriv inn innholdet til eposten her... "
             />
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Send epost</Button>
+          <Button type="submit" onClick={() => onOpenChange(false)}>
+            Send epost
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

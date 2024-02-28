@@ -16,7 +16,7 @@ export default async function Home() {
         breadcrumb={["Hjem", "Saldo- og balanse"]}
         primaryCta={
           <Button>
-            Avstem mot regnksap{" "}
+            Avstem mot regnskap{" "}
             <DocumentArrowDownIcon className="ml-2 h-5 w-5" />
           </Button>
         }
