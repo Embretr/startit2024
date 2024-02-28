@@ -3,6 +3,7 @@ import {
   ArrowLongRightIcon,
 } from "@heroicons/react/20/solid";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { cn } from "../../lib/utils";
 import { api } from "../../trpc/server";
 import { Button } from "../_components/button";
@@ -21,9 +22,11 @@ export default async function Home({ searchParams: { page = "1" } }) {
         title="Fakturaoversikt"
         breadcrumb={["Hjem", "Fakturaoversikt"]}
         primaryCta={
-          <Button>
-            Ny faktura <PlusIcon className="ml-2 h-4 w-4" />
-          </Button>
+          <Link href="/fakturaoversikt/ny">
+            <Button>
+              Ny faktura <PlusIcon className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         }
       />
       <Invoices invoices={invoices} />
