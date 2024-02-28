@@ -8,6 +8,7 @@ fresh:
 db:
 	make purge
 	docker compose up -d
+	make wait-for-db
 	make loaddata
 
 # Clean everything
@@ -27,3 +28,12 @@ dev:
 loaddata:
 	npx prisma migrate reset
 	pnpm install
+
+.PHONY: wait-for-db
+wait-for-db:
+	echo "Waiting for the database to be ready..."
+	@while ! pg_isready -h localhost -p 5433 -U usr; do \
+		sleep 1; \
+		echo "Waiting for database..."; \
+	done
+	@echo "Database is ready!"
