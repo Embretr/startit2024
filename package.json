@@ -13,6 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@langchain/openai": "^0.0.15",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@prisma/client": "^5.10.2",
@@ -24,6 +25,7 @@
     "@trpc/next": "^10.45.1",
     "@trpc/react-query": "^10.45.1",
     "@trpc/server": "^10.45.1",
+    "langchain": "^0.1.23",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "next": "^14.1.0",
