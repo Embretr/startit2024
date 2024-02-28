@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { fakturaRouter } from "./routers/faktura";
 import { timelisteRouter } from "./routers/timeliste";
+import { AIRouter } from "./routers/ai";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { timelisteRouter } from "./routers/timeliste";
 export const appRouter = createTRPCRouter({
   faktura: fakturaRouter,
   timeliste: timelisteRouter,
+  ai: AIRouter,
 });
 
 // export type definition of API

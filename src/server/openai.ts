@@ -1,5 +1,6 @@
 import { env } from "../env";
 import OpenAi from "openai";
+import fetchFakturaQueries from "./fetch_faktura_queries";
 
 const openAi = new OpenAi({
   apiKey: env.OPENAI_API_KEY,
@@ -22,7 +23,7 @@ export const promptInvoice = async () => {
     Additionally, you should provide a title and a description for the recommended action. The title should be a short summary of the recommended action and the description should provide more details about the recommended action.
     All text returned by you should be in Norwegian. ALWAYS REPLY IN NORWEGIAN.
     Please refer to the data from the user input used when answering the question. 
-    Once you use an action id, it cannot be repeated. Do not recommend the same action multiple times.
+    Once you use an action id, it cannot be repeated. DO NOT recommend the same action multiple times.
     Recommend between 1 and 3 actions.
 
     The list of actions are as follows:
@@ -32,6 +33,7 @@ export const promptInvoice = async () => {
     - actionId: 1004, action: Generate an invoice.
     - actionId: 1005, action: Generate a report based on the most promising customers.
     - actionId: 1006, action: Generate a report based on the least promising customers.
+    - actionId: 1007, action: Generate a analyze based on the profits of the company.
 
     The format should be as the following example:
     {
@@ -49,7 +51,7 @@ export const promptInvoice = async () => {
         },
         { 
           title: "Kunden med kundenummer 29383 er den mest lønnsomme kunden din.",
-          description: "Generer en rapport basert på de top 3 mest lovende kundene.",
+          description: "Generer en rapport basert på denne kunden.",
           actionId: 1005
         },
       ]
@@ -62,23 +64,23 @@ export const promptInvoice = async () => {
     }
   `;
 
-  const USER_CONTENT = `
-    Number of unpaid reminders per customer by customer id: 
-    
-  `;
+  const USER_CONTENT = await fetchFakturaQueries();
 
   const completion = await openAi.chat.completions.create({
     messages: [
       {
         role: "system",
-        content: SYSTEM_CONTENT,
+        content: SYSTEM_CONTENT
       },
       {
         role: "user",
-        content: USER_CONTENT,
+        content: USER_CONTENT
       },
     ],
     model: "gpt-3.5-turbo",
     response_format: { type: "json_object" },
+    top_p: 0.1
   });
+
+  return completion.choices[0].message.content;
 };
