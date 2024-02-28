@@ -7,14 +7,6 @@ const openAi = new OpenAi({
 });
 export default openAi;
 
-async function main() {
-  const completion = await openAi.chat.completions.create({
-    messages: [{ role: "system", content: "You are a helpful assistant." }],
-    model: "gpt-3.5-turbo",
-  });
-
-  console.log(completion.choices[0]);
-}
 
 export const promptInvoice = async () => {
   const SYSTEM_CONTENT = `
@@ -23,8 +15,9 @@ export const promptInvoice = async () => {
     Additionally, you should provide a title and a description for the recommended action. The title should be a short summary of the recommended action and the description should provide more details about the recommended action.
     All text returned by you should be in Norwegian. ALWAYS REPLY IN NORWEGIAN.
     Please refer to the data from the user input used when answering the question. 
+    If the data used to answer the question is measuring profit, the profit should be measured in NOK.
     Once you use an action id, it cannot be repeated. DO NOT recommend the same action multiple times.
-    Recommend between 1 and 3 actions.
+    Recommend exactly 4 actions.
 
     The list of actions are as follows:
     - actionId: 1001, action: Send a reminder email for the invoice.
@@ -40,12 +33,12 @@ export const promptInvoice = async () => {
       statusCode: 200,
       actions: [
         { 
-          title: "Kunde(ne) med kundenummer 10328 har 3 ubetalte fakturaer.",
-          description: "Du bør sende en påminnelse på e-post til denne klienten.",
+          title: "Kunde(ne) med kundenummer 10328 har hatt 10 ubetalte fakturaer de siste årene.",
+          description: "Du burde sende en påminnelse på e-post til denne klienten med info om fakturaforfall.",
           actionId: 1001
         },
         { 
-          title: "Kunde med kundenummer 22838 har ikke brukt tjenesten på en stund.",
+          title: "Kunde med kundenummer 22838 har ikke vært kunde hos deg på en stund.",
           description: "Du bør sende en markedsførings-e-post til denne klienten.",
           actionId: 1002
         },
@@ -79,7 +72,7 @@ export const promptInvoice = async () => {
     ],
     model: "gpt-3.5-turbo",
     response_format: { type: "json_object" },
-    top_p: 0.1
+    top_p: 1
   });
 
   return completion.choices[0].message.content;
