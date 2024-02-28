@@ -5,7 +5,7 @@
 set -ex
 
 # Define the connection URL and the path to your SQL file
-DATABASE_URL="postgresql://usr:pw@localhost:5433/db"
+DATABASE_URL="postgresql://usr:pw@167.71.8.39:5432/db"
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Use psql to run the SQL file using the connection URL
