@@ -8,7 +8,13 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      colors: {
+        primary: {
+          DEFAULT: "#0a41fa",
+          light: "#d4ebeb",
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 } satisfies Config;
