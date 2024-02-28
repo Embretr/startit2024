@@ -39,4 +39,32 @@ export const fakturaRouter = createTRPCRouter({
         take: input.take,
       });
     }),
+
+  create: publicProcedure
+    .input(
+      z.object({
+        faktura_dato: z.string(),
+        forfallsdato: z.string(),
+        kundenummer: z.number(),
+        avdelingsnummer: z.string(),
+        avdelingsnavn: z.string(),
+        prosjektnummer: z.string(),
+        prosjektledernummer: z.string(),
+        belop_eks_mva: z.number(),
+        valuta: z.string(),
+        belop_inkl_mva: z.number(),
+        betalt: z.number(),
+        utestaende: z.number(),
+        purring: z.number(),
+        purring_status: z.string(),
+        purring_sist_sendt: z.string(),
+        purring_forfallsdato: z.string(),
+      }),
+    )
+    .output(z.object({ id: z.string() }))
+    .mutation(({ ctx, input }) => {
+      return ctx.db.fakturaoversikt.create({
+        data: { ...input, selskap: 1 },
+      });
+    }),
 });
