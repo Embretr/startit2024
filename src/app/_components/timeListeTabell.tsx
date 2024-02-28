@@ -25,18 +25,20 @@ const TimeListeTabell: React.FC = () => {
   return (
     <div className="ml-8 w-3/4">
       <table className="mx-auto min-w-full border-2 leading-normal">
-        <thead className="border-2">
+        <thead className="border-1 ">
           <tr>
-            <td className="flex w-full items-center justify-between p-3">
-              <span className="font-medium text-gray-700">
+            <td colSpan={11} className="ml-4 p-3">
+              <span className="text-xl font-medium text-gray-700">
                 Marius Fredriksen (Uke 9, 2024-02-26 - 2024-03-03)
               </span>
-              <div className="flex">
-                <button className="mr-2 rounded bg-blue-500 px-2 py-1 font-bold text-white hover:bg-blue-700">
+            </td>
+            <td>
+              <div className="m-2 flex">
+                <button className="mr-2 rounded  px-2 py-1 font-bold text-blue-600 ">
                   Ny rad
                 </button>
-                <button className="rounded bg-green-500 px-2 py-1 font-bold text-white hover:bg-green-700">
-                  Lagret
+                <button className="rounded bg-blue-600 px-2 py-1 font-bold text-white">
+                  Lagre
                 </button>
               </div>
             </td>
@@ -57,17 +59,17 @@ const TimeListeTabell: React.FC = () => {
             <th className="border-b-2 border-gray-200 px-5 py-3 text-left text-xs font-semibold">
               28 ons
             </th>
-            <th className="border-b-2 border-gray-200 bg-blue-600 px-5 py-3 text-left text-xs font-semibold">
+            <th className="border-b-2 border-gray-200 bg-blue-600 px-5 py-3 text-left text-xs font-semibold text-white">
               29 tor
             </th>
             <th className="border-b-2 border-gray-200 px-5 py-3 text-left text-xs font-semibold">
-              1 fre
+              01 fre
             </th>
             <th className="border-b-2 border-gray-200 bg-gray-200 px-5 py-3 text-left text-xs font-semibold">
-              2 lør
+              02 lør
             </th>
             <th className="border-b-2 border-gray-200 bg-gray-200 px-5 py-3 text-left text-xs font-semibold">
-              3 søn
+              03 søn
             </th>
             <th className="border-b-2 border-gray-200 px-5 py-3 text-left text-xs font-semibold">
               Sum
@@ -81,7 +83,7 @@ const TimeListeTabell: React.FC = () => {
         <tbody>
           <tr>
             <td className="bg-white px-5 py-2 text-sm text-gray-900">
-              <button className="bg-color-grey-900 ">Ny rad</button>
+              <button className="font-bold text-blue-600">Ny rad</button>
             </td>
             <td className="bg-white px-5 py-2 text-sm text-gray-900">Sum</td>
             <td className="bg-white px-5 py-2 text-sm text-gray-900">0,0</td>
