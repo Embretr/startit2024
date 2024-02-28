@@ -5,14 +5,12 @@ import {
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { cn } from "../../lib/utils";
+import { api } from "../../trpc/server";
 import { Button } from "../_components/button";
 import Header from "../_components/header";
 import Invoices from "../_components/invoices";
-import CreateEmailDialog, {
-  AIFakturaResponse,
-} from "../_components/create-email-dialog/create-email-dialog";
+import MagicCard from "../_components/magic-card";
 import { Action } from "../testing/page";
-import { api } from "../../trpc/server";
 
 export default async function Home({ searchParams: { page = "1" } }) {
   const invoices = await api.faktura.getAll.query({
@@ -39,6 +37,7 @@ export default async function Home({ searchParams: { page = "1" } }) {
           </Link>
         }
       />
+      <MagicCard />
       <Invoices invoices={invoices} />
       <nav className="flex items-center justify-between border-t border-gray-200 px-4 pb-4 sm:px-0">
         <div className="-mt-px flex w-0 flex-1">

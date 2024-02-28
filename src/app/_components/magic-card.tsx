@@ -11,7 +11,7 @@ export default function MagicCard() {
   return (
     open && (
       <div className="group relative my-8 ">
-        <div className="relative z-10 flex h-72 flex-col justify-center rounded-xl border border-neutral-200 bg-white p-4 transition-transform duration-200 ease-in-out">
+        <div className="relative z-10 flex h-72 flex-col justify-center rounded-xl border border-neutral-200 bg-primary-light p-4 transition-transform duration-200 ease-in-out">
           {!actions.data ? (
             <div className="flex h-full w-full items-center justify-center">
               <div className="container">
@@ -33,11 +33,13 @@ export default function MagicCard() {
                 <div className="flex cursor-pointer items-center justify-between rounded-md p-2 pr-8 hover:bg-neutral-200">
                   <div>
                     <div className="text-sm font-semibold">{action.title}</div>
-                    <div className="text-xs text-neutral-400">
+                    <div className="text-xs text-neutral-600">
                       {action.description}
                     </div>
                   </div>
-                  <Button>{actionIdToButtonText(action.actionId)}</Button>
+                  <Button className="w-32">
+                    {actionIdToButtonText(action.actionId)}
+                  </Button>
                 </div>
               ))}
             </div>
