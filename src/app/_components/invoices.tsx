@@ -60,7 +60,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Invoices() {
+  
+
+export default function Invoices({invoices}) {
   return (
     <ul role="list" className="divide-y divide-gray-100">
       {invoices.map((project, key) => (

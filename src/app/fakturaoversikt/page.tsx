@@ -18,7 +18,7 @@ export default async function Home() {
           </Button>
         }
       />
-      <Invoices />
+      <Invoices invoices={invoices} />
     </div>
   );
 }
