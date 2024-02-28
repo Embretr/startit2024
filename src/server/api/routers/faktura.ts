@@ -38,6 +38,7 @@ export const fakturaRouter = createTRPCRouter({
     .output(z.array(fakturaoversiktSchema))
     .query(({ ctx, input }) => {
       return ctx.db.fakturaoversikt.findMany({
+        orderBy: { forfallsdato: "desc" },
         skip: input.skip,
         take: input.take,
       });
@@ -46,24 +47,10 @@ export const fakturaRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        faktura_nr: z.number().nullable().optional(),
-        faktura_dato: z.string().nullable().optional(),
         forfallsdato: z.string().nullable().optional(),
-        kundenummer: z.number().nullable().optional(),
-        avdelingsnummer: z.string().nullable().optional(),
-        avdelingsnavn: z.string().nullable().optional(),
-        prosjektnummer: z.string().nullable().optional(),
-        prosjektledernummer: z.string().nullable().optional(),
-        belop_eks_mva: z.number().nullable().optional(),
-        valuta: z.string().nullable().optional(),
-        belop_inkl_mva: z.number().nullable().optional(),
-        betalt: z.number().nullable().optional(),
-        utestaende: z.number().nullable().optional(),
-        purring: z.number().nullable().optional(),
-        purring_status: z.string().nullable().optional(),
-        purring_sist_sendt: z.string().nullable().optional(),
-        purring_forfallsdato: z.string().nullable().optional(),
         selskap: z.number().nullable().optional(),
+        utestaende: z.number().nullable().optional(),
+        kundenummer: z.number().nullable().optional(),
       }),
     )
     .output(z.object({ id: z.string() }))
