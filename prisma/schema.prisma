@@ -60,9 +60,3 @@ model timestatistikk {
   sum_div_oppgaver                Float?
   sum_gen_akt                     Float?
 }
-
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
